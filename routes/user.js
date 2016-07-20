@@ -11,6 +11,15 @@ router.get('/', function(req, res, next) {
   });
 });
 
+//Find an user by _id
+router.get('/:id', function(req, res, next) {
+  Users.findById(req.params.id, function(err, user) {
+    if(err) return next(err);
+    res.json(user);
+  });
+});
+
+/*POST Save user entity */
 router.post('/', function(req, res, next) {
   var users = new Users(req.body);
 
