@@ -4,9 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/user');
+var articles = require('./routes/article');
 
 var app = express();
 
@@ -16,14 +18,26 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+var dbURL = 'mongodb://admiosenyert:c27u09m83p@ds023445.mlab.com:23445/vote_system';
+mongoose.connect(dbURL);
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Avoiding CORS problems
+app.use(function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
+});
+
 app.use('/', routes);
 app.use('/user', users);
+app.use('/article', articles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
