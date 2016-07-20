@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 var Users = require('../models/userModel');
@@ -18,6 +20,6 @@ router.post('/', function(req, res, next) {
     if(err) return next(err);
     res.json(user); //Return after a creation process is useful
   });
-});
+
 
 module.exports = router;
