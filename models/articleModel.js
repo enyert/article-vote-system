@@ -3,7 +3,6 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var articleSchema = new Schema({
-  id: { type: ObjectId },
   publisher: { type: ObjectId, ref: 'users', required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
