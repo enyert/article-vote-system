@@ -18,7 +18,8 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-var dbURL = 'mongodb://admiosenyert:c27u09m83p@ds023445.mlab.com:23445/vote_system';
+//var dbURL = 'mongodb://admiosenyert:c27u09m83p@ds023445.mlab.com:23445/vote_system'; //dev
+var dbURL = 'mongodb://127.0.0.1:27017/vote_system'; //local
 mongoose.connect(dbURL);
 
 app.use(logger('dev'));
