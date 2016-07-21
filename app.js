@@ -1,14 +1,16 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+var express = require('express'),
+	path = require('path'),
+	favicon = require('serve-favicon'),
+	logger = require('morgan'),
+	cookieParser = require('cookie-parser'),
+	bodyParser = require('body-parser'),
+	mongoose = require('mongoose'),
 
-var routes = require('./routes/index');
-var users = require('./routes/user');
-var articles = require('./routes/article');
+	routes = require('./routes/index'),
+	users = require('./routes/user'),
+	articles = require('./routes/article'),
+	votes = require('./routes/vote');
+
 
 var app = express();
 
@@ -39,6 +41,7 @@ app.use(function(req, res, next){
 app.use('/', routes);
 app.use('/user', users);
 app.use('/article', articles);
+app.use('/vote', votes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
