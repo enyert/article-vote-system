@@ -1,3 +1,5 @@
+'use strict'
+
 var express = require('express');
 var router = express.Router();
 var Articles = require('../models/articleModel');
@@ -18,4 +20,15 @@ router.get('/:id', function(req, res, next) {
     res.json(article);
   });
 });
+
+/*POST Save article entity */
+router.post('/', function(req, res, next) {
+  var users = new Articles(req.body);
+
+  users.save(function(err, user) {
+    if(err) return next(err);
+    res.json(user); //Return after a creation process is useful
+  });
+});
+
 module.exports = router;
